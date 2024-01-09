@@ -34,7 +34,7 @@ def lambda_handler(event, context):
     #     raise e
     name = event["queryStringParameters"]["name"] if event["queryStringParameters"] is not None and "name" in event["queryStringParameters"] else None
     if name is None:
-        body = json.loads(event["body"])
+        body = json.loads(event["body"]) if event["body"] is not None else None
         name = body["name"] if body is not None and "name" in body else "World"
     return {
         "statusCode": 200,
